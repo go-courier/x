@@ -3,7 +3,7 @@ module github.com/go-courier/x
 go 1.17
 
 require (
-	github.com/onsi/gomega v1.16.0
+	github.com/onsi/gomega v1.17.0
 	github.com/pkg/errors v0.9.1
 	golang.org/x/tools v0.1.5
 )
