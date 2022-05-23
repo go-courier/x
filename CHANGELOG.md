@@ -5,6 +5,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.1.2](https://github.com/go-courier/x/compare/v0.1.1...v0.1.2)
+
+### Bug Fixes
+
+* **fix(types):** ttype init should not in init hook ([88ab6da](https://github.com/go-courier/x/commit/88ab6dab8840e4db3784643a14fa28ea4dbdfe0a))
+
+
+
 # [0.1.1](https://github.com/go-courier/x/compare/v0.1.0...v0.1.1)
 
 ### Bug Fixes
