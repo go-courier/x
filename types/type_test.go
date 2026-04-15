@@ -4,6 +4,7 @@ import (
 	"encoding"
 	"go/types"
 	"reflect"
+	"strings"
 	"testing"
 	"unsafe"
 
@@ -12,6 +13,13 @@ import (
 	typ2 "github.com/go-courier/x/types/testdata/typ/typ"
 	. "github.com/onsi/gomega"
 )
+
+// normalizeTypeString normalizes differences between reflect and go/types string formatting.
+// In Go 1.25+, go/types omits "interface{}" for variadic `...any` parameters,
+// while reflect still shows "...interface{}".
+func normalizeTypeString(s string) string {
+	return strings.ReplaceAll(s, "...interface {}", "...")
+}
 
 func TestType(t *testing.T) {
 	fn := func(a, b string) bool {
@@ -130,7 +138,7 @@ func check(t *testing.T, v any) {
 				NewWithT(t).Expect(ok).To(BeTrue())
 				NewWithT(t).Expect(rMethod.Name()).To(Equal(tMethod.Name()))
 				NewWithT(t).Expect(rMethod.PkgPath()).To(Equal(tMethod.PkgPath()))
-				NewWithT(t).Expect(rMethod.Type().String()).To(Equal(tMethod.Type().String()))
+				NewWithT(t).Expect(normalizeTypeString(rMethod.Type().String())).To(Equal(normalizeTypeString(tMethod.Type().String())))
 			})
 		}
 
